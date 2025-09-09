@@ -1,0 +1,28 @@
+.notification-button {
+    padding: 8px;
+    position: relative;
+    user-select: none;
+}
+
+.notification-icon {
+    font-size: 2rem;
+    color: #707070;
+}
+
+.notification-icon:hover {
+    color: #000;
+}
+
+.notifyCount {
+    position: absolute;
+    top: -2px;
+    left: 20px;
+    font-size: 1.2rem;
+    line-height: 1;
+    font-weight: 500;
+    color: #fff;
+    background-color: #fa3e3e;
+    padding: 2px 6px 1px;
+    border-radius: 99px;
+    z-index: 1;
+}
