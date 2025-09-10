@@ -1,9 +1,9 @@
 import styles from "./SearchForm.module.scss"
 
+
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import ResultList from "../../../components/Dropdown";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Dropdown from "../../../components/Dropdown";
 
 //Fake data
@@ -73,19 +73,29 @@ const searchResult = [
     }
 ]
 
-
 function SearchForm({ placeholder }) {
     const [input, setInput] = useState("")
     const [courses, setCourses] = useState([])
     const [posts, setPosts] = useState([])
     const [videos, setVideos] = useState([])
-    // const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    const wrapperRef = useRef(null);
 
-    useEffect(()=> {
+    useEffect(() => {
         setCourses(searchResult.filter(item => item.type === 'KHÓA HỌC'))
         setPosts(searchResult.filter(item => item.type === 'BÀI VIẾT'))
         setVideos(searchResult.filter(item => item.type === 'VIDEO'))
     }, [])
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     function handleInputChange(e) {
         setInput(e.target.value)
@@ -96,7 +106,7 @@ function SearchForm({ placeholder }) {
     }
 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} ref={wrapperRef}>
             <div className={styles.searchWrapper}>
                 <div className={clsx("fa-solid", "fa-magnifying-glass", styles.searchIcon)}></div>
                 <input
@@ -104,32 +114,48 @@ function SearchForm({ placeholder }) {
                     placeholder={placeholder}
                     value={input}
                     onChange={handleInputChange}
+                    onFocus={() => setIsOpen(true)}
                 />
-                <div 
+                <div
                     className={styles.searchClearIcon}
                     onClick={handleClearSearch}
                 >{!!input.length && <span>&times;</span>}</div>
 
 
-                <div className={styles['searchResult-wrapper']}>
-                    <div className={styles['searchResult-header']}>
-                        <i className={clsx("fa-solid", "fa-magnifying-glass", styles['searchResult-icon'])}></i>
-                        <p>{input.length !== 0 ? ` Kết quả cho '${input}'` : ""}</p>
-                    </div>
+                {(isOpen && input.length >= 1) &&
+                    <div className={styles['searchResult-wrapper']} >
+                        <div className={styles['searchResult-content']}>
+                            <div className={styles['searchResult-header']}>
+                                <i className={clsx("fa-solid", "fa-magnifying-glass", styles['searchResult-icon'])}></i>
+                                <p>{input.length !== 0 ? ` Kết quả cho '${input}'` : ""}</p>
+                            </div>
 
-                    <Dropdown
-                        headingTitle={'KHÓA HỌC'}
-                        listItems={courses}
-                    />
-                    <Dropdown
-                        headingTitle={'BÀI VIẾT'}
-                        listItems={posts}
-                    />
-                    <Dropdown
-                        headingTitle={'VIDEO'}
-                        listItems={videos}
-                    />
-                </div>
+                            <Dropdown headingTitle={'KHÓA HỌC'}>
+                                {courses.map(item =>
+                                    <a key={item.id} className={styles['searchResult-item']} href={item.resultUrl} target="_blank">
+                                        <img className={styles['searchResult-item--img']} src={`${item.imgUrl}`} />
+                                        <span className={styles['searchResult-item--title']}>{item.title}</span>
+                                    </a>
+                                )}
+                            </Dropdown>
+                            <Dropdown headingTitle={'BÀI VIẾT'}>
+                                {posts.map(item =>
+                                    <a key={item.id} className={styles['searchResult-item']} href={item.resultUrl} target="_blank">
+                                        <img className={styles['searchResult-item--img']} src={`${item.imgUrl}`} />
+                                        <span className={styles['searchResult-item--title']}>{item.title}</span>
+                                    </a>
+                                )}
+                            </Dropdown>
+                            <Dropdown headingTitle={'VIDEO'}>
+                                {videos.map(item =>
+                                    <a key={item.id} className={styles['searchResult-item']} href={item.resultUrl} target="_blank">
+                                        <img className={styles['searchResult-item--img']} src={`${item.imgUrl}`} />
+                                        <span className={styles['searchResult-item--title']}>{item.title}</span>
+                                    </a>
+                                )}
+                            </Dropdown>
+                        </div>
+                    </div>}
             </div>
         </div>
     )

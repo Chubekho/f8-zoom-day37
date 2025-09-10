@@ -1,4 +1,8 @@
-.myCourse__btn {
+.myCourse-wrapper {
+    position: relative;
+}
+
+.myCourse-btn {
     margin-right: 16px;
     font-size: 1.4rem;
     font-weight: 600;
@@ -7,3 +11,4 @@
     color: #333;
     background-color: transparent;
 }
+

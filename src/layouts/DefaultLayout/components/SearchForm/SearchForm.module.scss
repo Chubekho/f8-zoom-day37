@@ -56,19 +56,42 @@
 }
 
 .searchResult-wrapper {
-    position: absolute;
-    inset: 50px auto auto 0px;
-    z-index: 9999;
-    width: 420px;
-    background: #fff;
-    border-radius: 10px;
-    padding: 12px 24px;
-    margin: 0px;
-    overflow: hidden;
-    transition: all ease-in-out .3s;
-    animation: fadeIn ease .3s;
-    box-shadow: 0 -4px 32px #0003;
+  position: absolute;
+  inset: 50px auto auto 0px;
+  z-index: 9999;
+  width: 100%;
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px 24px;
+  box-shadow: 0 -4px 32px #0003;
+  transition: all ease-in-out .3s;
+  animation: fadeIn ease .3s;
+  overflow: hidden; /* chỉ để bo góc */
 }
+
+.searchResult-content {
+  max-height: calc(80vh - 24px); /* trừ padding */
+  overflow-y: auto;
+  padding-right: 8px; /* chừa chỗ cho scrollbar */
+  margin-right: -24px;
+}
+
+/* Custom scrollbar */
+.searchResult-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.searchResult-content::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.searchResult-content::-webkit-scrollbar-thumb {
+  background: var(--desc-color);
+  border-radius: 10px;
+}
+
 
 @keyframes fadeIn {
     from {
@@ -93,4 +116,29 @@
 .searchResult-icon {
     margin-right: 8px;
     margin-bottom: -2px;
+}
+
+.searchResult-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+}
+
+.searchResult-item--img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.searchResult-item--title {
+    font-size: 1.4rem;
+    color: #292929;
+    margin-left: 12px;
+    line-height: 1.6;
+    overflow: hidden;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }

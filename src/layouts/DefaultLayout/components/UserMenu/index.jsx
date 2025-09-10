@@ -1,6 +1,6 @@
 import styles from "./UserMenu.module.scss";
 
-import avatar from "../../../../assets/images/monkey1.jpg"
+import avatar from "../../../../assets/images/avatar/monkey1.jpg"
 
 function UserMenu() {
     return (
