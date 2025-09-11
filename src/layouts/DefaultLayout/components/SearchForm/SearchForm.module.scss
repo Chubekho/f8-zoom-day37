@@ -56,54 +56,8 @@
 }
 
 .searchResult-wrapper {
-  position: absolute;
-  inset: 50px auto auto 0px;
-  z-index: 9999;
-  width: 100%;
-  max-height: 80vh;
-  background: #fff;
-  border-radius: 10px;
-  padding: 12px 24px;
-  box-shadow: 0 -4px 32px #0003;
-  transition: all ease-in-out .3s;
-  animation: fadeIn ease .3s;
-  overflow: hidden; /* chỉ để bo góc */
-}
-
-.searchResult-content {
-  max-height: calc(80vh - 24px); /* trừ padding */
-  overflow-y: auto;
-  padding-right: 8px; /* chừa chỗ cho scrollbar */
-  margin-right: -24px;
-}
-
-/* Custom scrollbar */
-.searchResult-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.searchResult-content::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 10px;
-}
-
-.searchResult-content::-webkit-scrollbar-thumb {
-  background: var(--desc-color);
-  border-radius: 10px;
-}
-
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(5px);
-        /* hiệu ứng trượt nhẹ từ dưới lên */
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    width: 100%;
+    inset: 50px 0 auto auto;
 }
 
 .searchResult-header {
@@ -124,14 +78,14 @@
     padding: 6px 0;
 }
 
-.searchResult-item--img {
+.searchResult-item__img {
     width: 36px;
     height: 36px;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.searchResult-item--title {
+.searchResult-item__title {
     font-size: 1.4rem;
     color: #292929;
     margin-left: 12px;
@@ -142,3 +96,4 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
+

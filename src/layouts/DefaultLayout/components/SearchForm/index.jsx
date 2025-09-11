@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import Dropdown from "../../../components/Dropdown";
+import Wrapper from "../../../components/Wrapper";
 
 //Fake data
 const searchResult = [
@@ -123,39 +124,38 @@ function SearchForm({ placeholder }) {
 
 
                 {(isOpen && input.length >= 1) &&
-                    <div className={styles['searchResult-wrapper']} >
-                        <div className={styles['searchResult-content']}>
-                            <div className={styles['searchResult-header']}>
-                                <i className={clsx("fa-solid", "fa-magnifying-glass", styles['searchResult-icon'])}></i>
-                                <p>{input.length !== 0 ? ` Kết quả cho '${input}'` : ""}</p>
-                            </div>
-
-                            <Dropdown headingTitle={'KHÓA HỌC'}>
-                                {courses.map(item =>
-                                    <a key={item.id} className={styles['searchResult-item']} href={item.resultUrl} target="_blank">
-                                        <img className={styles['searchResult-item--img']} src={`${item.imgUrl}`} />
-                                        <span className={styles['searchResult-item--title']}>{item.title}</span>
-                                    </a>
-                                )}
-                            </Dropdown>
-                            <Dropdown headingTitle={'BÀI VIẾT'}>
-                                {posts.map(item =>
-                                    <a key={item.id} className={styles['searchResult-item']} href={item.resultUrl} target="_blank">
-                                        <img className={styles['searchResult-item--img']} src={`${item.imgUrl}`} />
-                                        <span className={styles['searchResult-item--title']}>{item.title}</span>
-                                    </a>
-                                )}
-                            </Dropdown>
-                            <Dropdown headingTitle={'VIDEO'}>
-                                {videos.map(item =>
-                                    <a key={item.id} className={styles['searchResult-item']} href={item.resultUrl} target="_blank">
-                                        <img className={styles['searchResult-item--img']} src={`${item.imgUrl}`} />
-                                        <span className={styles['searchResult-item--title']}>{item.title}</span>
-                                    </a>
-                                )}
-                            </Dropdown>
+                    <Wrapper className={styles['searchResult-wrapper']} boxShadow animation>
+                        <div className={styles['searchResult-header']}>
+                            <i className={clsx("fa-solid", "fa-magnifying-glass", styles['searchResult-icon'])}></i>
+                            <p>{input.length !== 0 ? ` Kết quả cho '${input}'` : ""}</p>
                         </div>
-                    </div>}
+
+                        <Dropdown headingTitle={'KHÓA HỌC'}>
+                            {courses.map(item =>
+                                <a key={item.id} className={styles['searchResult-item']} href={item.resultUrl} target="_blank">
+                                    <img className={styles['searchResult-item__img']} src={`${item.imgUrl}`} />
+                                    <span className={styles['searchResult-item__title']}>{item.title}</span>
+                                </a>
+                            )}
+                        </Dropdown>
+                        <Dropdown headingTitle={'BÀI VIẾT'}>
+                            {posts.map(item =>
+                                <a key={item.id} className={styles['searchResult-item']} href={item.resultUrl} target="_blank">
+                                    <img className={styles['searchResult-item__img']} src={`${item.imgUrl}`} />
+                                    <span className={styles['searchResult-item__title']}>{item.title}</span>
+                                </a>
+                            )}
+                        </Dropdown>
+                        <Dropdown headingTitle={'VIDEO'}>
+                            {videos.map(item =>
+                                <a key={item.id} className={styles['searchResult-item']} href={item.resultUrl} target="_blank">
+                                    <img className={styles['searchResult-item__img']} src={`${item.imgUrl}`} />
+                                    <span className={styles['searchResult-item__title']}>{item.title}</span>
+                                </a>
+                            )}
+                        </Dropdown>
+                    </Wrapper>
+                }
             </div>
         </div>
     )

@@ -12,3 +12,59 @@
     background-color: transparent;
 }
 
+.myCourse-list__wrapper {
+    inset: 40px 16px auto auto;
+    padding-top: 0;
+    width: 400px;
+}
+
+.myCourse-item {
+    display: flex;
+    transition: background-color .3s;
+    padding: 8px 0;
+    border-radius: 10px;
+}
+
+// .myCourse-item:nth-child(1) {
+//     margin-top: 50px;
+// }
+
+.myCourse-item__img {
+    width: 120px;
+    height: 68px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.myCourse-item__info {
+    margin-left: 12px;
+    flex: 1;
+}
+
+.myCourse-item__title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.myCourse-item__last-studied {
+    font-size: 1.2rem;
+    color: var(--desc-color);
+    // margin-top: 4px;
+}
+
+.myCourse-item__progress {
+    width: 100%;
+    height: 8px;
+    background: #e5e5e5;
+    border-radius: 4px;
+    margin-top: 4px;
+    overflow: hidden;
+}
+
+.myCourse-item__progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff5722, #ff7043);
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+}

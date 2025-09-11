@@ -1,12 +1,23 @@
 //dropdown
+// .dropDown-wrapper {
+//     position: relative;
+// }
+
 .dropDown-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 0 12px;
+    padding: 18px 0 8px;
     margin-bottom: 6px;
     border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
+
+.headerFixed {
+    position: fixed;
+    // inset: -10px 0 auto auto;
+    width: 100%;
+}
+
 
 .dropDown-heading__title {
     font-size: 1.4rem;

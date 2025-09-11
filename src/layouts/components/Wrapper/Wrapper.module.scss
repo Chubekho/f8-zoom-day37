@@ -1,0 +1,57 @@
+.wrapper {
+    position: absolute;
+    z-index: 9999;
+    min-width: 380px;
+    max-height: 80vh;
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 24px;
+    overflow: hidden;
+}
+
+.border {
+    border: 1px solid #555;
+}
+
+.boxShadow {
+    box-shadow: 0 -4px 32px #0003;
+}
+
+.animation {
+    transition: all ease-in-out .3s;
+    animation: fadeIn ease .3s;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wrapper-content {
+    max-height: calc(80vh - 24px);
+    overflow-y: auto;
+    padding-right: 16px;
+    margin-right: -20px;
+}
+
+.wrapper-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.wrapper-content::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.wrapper-content::-webkit-scrollbar-thumb {
+    background: #8f8f8f;
+    border-radius: 10px;
+}
